@@ -1,0 +1,7 @@
+.env
+*.png
+asistencia.log
+__pycache__/
+*.pyc
+venv/
+.claude/
