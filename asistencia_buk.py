@@ -40,8 +40,9 @@ ASISTENCIA_URL    = "https://globalconexus.buk.cl/static_pages/portal"
 XPATH_ENTRADA     = '//*[@id="web-marking-form"]/div[2]/button[1]/span'
 XPATH_SALIDA      = '//*[@id="web-marking-form"]/div[2]/button[2]/span'
 
-EMAIL    = os.getenv("BUK_EMAIL", "")
-PASSWORD = os.getenv("BUK_PASSWORD", "")
+EMAIL          = os.getenv("BUK_EMAIL", "")
+PASSWORD       = os.getenv("BUK_PASSWORD", "")
+CHROME_VISIBLE = os.getenv("CHROME_VISIBLE", "true").lower() == "true"
 
 # Gmail IMAP
 GMAIL_USER         = EMAIL                            # mismo correo que Buk
@@ -495,7 +496,7 @@ def main():
     if not es_dia_habil():
         return
 
-    driver = crear_driver(visible=True)
+    driver = crear_driver(visible=CHROME_VISIBLE)
 
     try:
         ok = hacer_login(driver, inicio)

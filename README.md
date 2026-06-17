@@ -74,7 +74,7 @@ El script detecta automáticamente el Python del venv. ¡Listo, ya no tienes que
 | 18:30 L-V         | Marca Salida  |
 
 - El script detecta si es mañana o tarde para elegir el botón correcto.
-- Chrome corre en modo invisible (sin ventana).
+- Chrome corre en modo **visible** por defecto. Puedes cambiarlo a invisible con `CHROME_VISIBLE=false` en el `.env`.
 - 🇨🇱 **No marca asistencia en feriados de Chile** — detectados automáticamente, no necesitas configurar nada.
 - Cada ejecución queda registrada en `asistencia.log`.
 - Si algo falla, se guarda una captura `debug_YYYYMMDD_HHMMSS.png` para diagnóstico.
