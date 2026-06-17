@@ -19,7 +19,7 @@ No marca asistencia en feriados de Chile.
 ### 1. Clonar el repo y crear el entorno virtual
 
 ```powershell
-git clone https://github.com/tu-usuario/AsistenciaBuk.git
+git clone https://github.com/eduardomoyab/AsistenciaBuk.git
 cd AsistenciaBuk
 
 python -m venv venv
