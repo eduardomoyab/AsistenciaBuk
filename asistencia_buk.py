@@ -8,6 +8,7 @@ Si Buk pide código de validación, lo lee automáticamente desde Gmail.
 import os
 import re
 import time
+import random
 import imaplib
 import holidays
 import email
@@ -495,6 +496,11 @@ def main():
 
     if not es_dia_habil():
         return
+
+    # Espera aleatoria entre 0 y 5 minutos para no parecer automatizado
+    espera = random.randint(0, 300)
+    log.info(f"Esperando {espera} segundos antes de iniciar...")
+    time.sleep(espera)
 
     driver = crear_driver(visible=CHROME_VISIBLE)
 
