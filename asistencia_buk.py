@@ -51,7 +51,7 @@ GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 GMAIL_IMAP_HOST    = "imap.gmail.com"
 BUK_REMITENTE      = "noreply@buk.cl"
 BUK_ASUNTO         = "BUK | Código de acceso a BUK"
-CODIGO_2FA_TIMEOUT = 5 * 60   # esperar máximo 5 minutos
+CODIGO_2FA_TIMEOUT = 15 * 60  # esperar máximo 15 minutos
 CODIGO_2FA_POLL    = 10       # revisar Gmail cada 10 segundos
 
 # Hora límite: antes de las 12:00 → entrada; después → salida

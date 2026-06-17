@@ -86,7 +86,7 @@ Cuando Buk pide el código de 6 dígitos:
 1. El script registra la hora exacta en que Buk pidió el código
 2. Se conecta a Gmail vía IMAP con la contraseña de aplicación
 3. Busca correos de `noreply@buk.cl` recibidos a partir de ese momento (ignora códigos viejos)
-4. Reintenta cada 10 segundos durante un máximo de **5 minutos**
+4. Reintenta cada 10 segundos durante un máximo de **15 minutos**
 5. En cuanto llega el correo, extrae el código y lo ingresa automáticamente en Buk
 6. No tienes que hacer nada — todo ocurre en segundo plano
 
