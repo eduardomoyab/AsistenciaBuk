@@ -2,7 +2,7 @@
 
 Registra automáticamente la entrada (09:00) y salida (18:30) en Buk de lunes a viernes.
 Si Buk pide validación por correo, el script la resuelve solo leyendo el código desde Gmail.
-No marca asistencia en feriados de Chile.
+Esto contempla feriados, por ende, **NO marca asistencia en feriados de Chile**.
 
 ---
 
@@ -53,8 +53,6 @@ BUK_EMAIL=tu_correo@empresa.cl
 BUK_PASSWORD=tu_contraseña_buk
 GMAIL_APP_PASSWORD=abcdefghijklmnop   ← los 16 caracteres, sin espacios
 ```
-
-> ⚠️ Nunca subas `.env` a git. El archivo `.env.example` es la referencia segura.
 
 ### 4. Programar las tareas automáticas
 
