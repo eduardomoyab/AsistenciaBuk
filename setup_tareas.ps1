@@ -67,7 +67,7 @@ function Crear-Tarea {
     # Correr con el usuario actual, sin requerir contraseña visible
     $principal = New-ScheduledTaskPrincipal `
                     -UserId $env:USERNAME `
-                    -LogonType InteractiveToken `
+                    -LogonType Interactive `
                     -RunLevel Limited
 
     Register-ScheduledTask `
