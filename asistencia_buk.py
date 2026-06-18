@@ -45,6 +45,11 @@ EMAIL          = os.getenv("BUK_EMAIL", "")
 PASSWORD       = os.getenv("BUK_PASSWORD", "")
 CHROME_VISIBLE = os.getenv("CHROME_VISIBLE", "true").lower() == "true"
 
+# Vacaciones — configurar en .env
+VACACIONES_ACTIVO = os.getenv("VACACIONES_ACTIVO", "false").lower() == "true"
+VACACIONES_INICIO = os.getenv("VACACIONES_INICIO", "")  # formato: DD/MM/YYYY
+VACACIONES_FIN    = os.getenv("VACACIONES_FIN", "")     # formato: DD/MM/YYYY
+
 # Gmail IMAP
 GMAIL_USER         = EMAIL                            # mismo correo que Buk
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
@@ -468,7 +473,7 @@ def marcar_asistencia(driver: webdriver.Chrome) -> bool:
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def es_dia_habil() -> bool:
-    """Retorna False si hoy es fin de semana o feriado en Chile."""
+    """Retorna False si hoy es fin de semana, feriado en Chile o período de vacaciones."""
     hoy = datetime.now().date()
 
     if hoy.weekday() >= 5:  # 5=sábado, 6=domingo
@@ -479,6 +484,16 @@ def es_dia_habil() -> bool:
     if hoy in feriados_cl:
         log.info(f"Hoy es feriado en Chile: {feriados_cl[hoy]}. No se marca asistencia.")
         return False
+
+    if VACACIONES_ACTIVO:
+        try:
+            inicio = datetime.strptime(VACACIONES_INICIO, "%d/%m/%Y").date()
+            fin    = datetime.strptime(VACACIONES_FIN,    "%d/%m/%Y").date()
+            if inicio <= hoy <= fin:
+                log.info(f"Vacaciones activas ({VACACIONES_INICIO} → {VACACIONES_FIN}). No se marca asistencia.")
+                return False
+        except ValueError:
+            log.warning("VACACIONES_ACTIVO=true pero las fechas son inválidas. Revisa el formato DD/MM/YYYY en .env")
 
     return True
 

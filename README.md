@@ -8,6 +8,9 @@ Esto contempla feriados, por ende, **NO marca asistencia en feriados de Chile**.
 
 ## Requisitos
 
+> ⚠️ **Solo compatible con Windows** por el momento. El script de automatización usa el Programador de Tareas de Windows (`setup_tareas.ps1`).
+
+- Windows 10/11
 - Python 3.10+
 - Google Chrome instalado
 - Cuenta Gmail con verificación en 2 pasos activada
@@ -89,6 +92,25 @@ Cuando Buk pide el código de 6 dígitos:
 4. Reintenta cada 10 segundos durante un máximo de **15 minutos**
 5. En cuanto llega el correo, extrae el código y lo ingresa automáticamente en Buk
 6. No tienes que hacer nada — todo ocurre en segundo plano
+
+---
+
+## Vacaciones
+
+Puedes configurar un período de vacaciones en el `.env` para que el script no marque asistencia durante esos días.
+
+```
+# Activar/desactivar vacaciones (true/false)
+VACACIONES_ACTIVO=true
+
+# Fechas en formato DD/MM/YYYY
+VACACIONES_INICIO=14/07/2026
+VACACIONES_FIN=25/07/2026
+```
+
+- Cuando vuelvas, solo cambia `VACACIONES_ACTIVO=false` — las fechas quedan guardadas para la próxima vez.
+- Si te vas un solo día, pon la misma fecha en inicio y fin: `VACACIONES_INICIO=14/07/2026` y `VACACIONES_FIN=14/07/2026`.
+- Si `VACACIONES_ACTIVO=false`, las fechas se ignoran completamente.
 
 ---
 
