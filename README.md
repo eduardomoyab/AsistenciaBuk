@@ -6,6 +6,12 @@ Esto contempla feriados, por ende, **NO marca asistencia en feriados de Chile**.
 
 ---
 
+## ⚠️ Requisito: el PC debe estar encendido
+
+Este script depende del Programador de Tareas de Windows, por lo que **el computador debe estar encendido y con sesión iniciada** a las 09:00 y 18:30. Si está apagado, en hibernación o suspendido, la tarea no se ejecutará y no se marcará asistencia.
+
+---
+
 ## Requisitos
 
 > ⚠️ **Solo compatible con Windows** por el momento. El script de automatización usa el Programador de Tareas de Windows (`setup_tareas.ps1`).
@@ -45,17 +51,21 @@ Esto le permite al script leer tu Gmail sin exponer tu contraseña real.
 
 ### 3. Configurar credenciales
 
-Copia `.env.example` como `.env` y completa los tres valores:
+Copia `.env.example` como `.env` y completa los valores:
 
 ```powershell
 copy .env.example .env
 ```
 
-```
-BUK_EMAIL=tu_correo@empresa.cl
-BUK_PASSWORD=tu_contraseña_buk
-GMAIL_APP_PASSWORD=abcdefghijklmnop   ← los 16 caracteres, sin espacios
-```
+| Variable | Valores | Descripción |
+|---|---|---|
+| `BUK_EMAIL` | `tu@correo.cl` | Correo con el que inicias sesión en Buk |
+| `BUK_PASSWORD` | `tu_contraseña` | Contraseña de Buk |
+| `GMAIL_APP_PASSWORD` | `abcdefghijklmnop` | Contraseña de aplicación de Google (16 caracteres sin espacios). Generarla en [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) |
+| `CHROME_VISIBLE` | `true` / `false` | Muestra u oculta la ventana de Chrome al ejecutar |
+| `VACACIONES_ACTIVO` | `true` / `false` | Activa o desactiva el período de vacaciones |
+| `VACACIONES_INICIO` | `DD/MM/YYYY` | Primer día de vacaciones (ej: `14/07/2026`) |
+| `VACACIONES_FIN` | `DD/MM/YYYY` | Último día de vacaciones (ej: `25/07/2026`) |
 
 ### 4. Programar las tareas automáticas
 
