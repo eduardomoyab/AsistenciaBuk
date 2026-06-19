@@ -40,7 +40,8 @@ Write-Host ""
 function Crear-Tarea {
     param(
         [string]$Nombre,
-        [string]$Hora,       # formato "HH:mm"
+        [string]$Hora,        # formato "HH:mm"
+        [string]$Dias,        # ej: "Monday,Tuesday,Wednesday,Thursday,Friday"
         [string]$Descripcion
     )
 
@@ -52,10 +53,12 @@ function Crear-Tarea {
                     -Argument "`"$scriptPy`"" `
                     -WorkingDirectory $scriptDir
 
-    # Lunes a viernes a la hora indicada
+    # Convertir string de días a array
+    $diasArray = $Dias -split ","
+
     $trigger = New-ScheduledTaskTrigger `
                     -Weekly `
-                    -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday `
+                    -DaysOfWeek $diasArray `
                     -At $Hora
 
     $settings = New-ScheduledTaskSettingsSet `
@@ -86,12 +89,20 @@ function Crear-Tarea {
 Crear-Tarea `
     -Nombre      "BukAsistencia_Entrada" `
     -Hora        "09:00" `
-    -Descripcion "Marca entrada automática en Buk (globalconexus)"
+    -Dias        "Monday,Tuesday,Wednesday,Thursday,Friday" `
+    -Descripcion "Marca entrada en Buk - L a V"
 
 Crear-Tarea `
     -Nombre      "BukAsistencia_Salida" `
     -Hora        "18:30" `
-    -Descripcion "Marca salida automática en Buk (globalconexus)"
+    -Dias        "Monday,Tuesday,Wednesday,Thursday" `
+    -Descripcion "Marca salida en Buk - L a J"
+
+Crear-Tarea `
+    -Nombre      "BukAsistencia_Salida_Viernes" `
+    -Hora        "16:00" `
+    -Dias        "Friday" `
+    -Descripcion "Marca salida en Buk - Viernes"
 
 Write-Host ""
 Write-Host "Listo. Las tareas se ejecutarán de lunes a viernes." -ForegroundColor Cyan

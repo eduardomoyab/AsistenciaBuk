@@ -81,10 +81,11 @@ El script detecta automáticamente el Python del venv. ¡Listo, ya no tienes que
 
 ## Cómo funciona
 
-| Hora de ejecución | Acción        |
-|-------------------|---------------|
-| 09:00 L-V         | Marca Entrada |
-| 18:30 L-V         | Marca Salida  |
+| Hora de ejecución | Días          | Acción        |
+|-------------------|---------------|---------------|
+| 09:00             | L - V         | Marca Entrada |
+| 18:30             | L - J         | Marca Salida  |
+| 16:00             | Viernes       | Marca Salida  |
 
 - El script detecta si es mañana o tarde para elegir el botón correcto.
 - Chrome corre en modo **visible** por defecto. Puedes cambiarlo a invisible con `CHROME_VISIBLE=false` en el `.env`.
